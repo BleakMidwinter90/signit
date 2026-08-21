@@ -93,12 +93,17 @@ export function fromUserSpace(point: UserSpacePoint, page: PageSize): Normalised
 /**
  * How far to turn drawn content so it sits upright on screen.
  *
- * The viewer turns the whole page by `rotation`, so anything drawn axis-aligned
- * in user space arrives on screen turned by the same amount. Pre-turning it the
- * other way cancels that out.
+ * /Rotate turns the page *clockwise* for display, and pdf-lib measures rotation
+ * counter-clockwise. Turning content counter-clockwise by the same number of
+ * degrees is therefore what cancels it out.
+ *
+ * The obvious-looking `360 - rotation` is wrong, and wrong in a way nothing
+ * internal can detect: it produced a signature that was correctly positioned
+ * and lying on its side. Only rendering the file and looking at the pixels
+ * caught it — see `scripts/verify-stamp.ts`.
  */
 export function uprightRotation(page: PageSize): number {
-  return (360 - page.rotation) % 360;
+  return page.rotation;
 }
 
 /**

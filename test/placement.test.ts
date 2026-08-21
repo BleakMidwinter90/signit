@@ -87,10 +87,18 @@ describe('fromUserSpace', () => {
 
 describe('uprightRotation', () => {
   it('cancels out the turn the viewer applies', () => {
+    // /Rotate turns the page clockwise for display and pdf-lib measures
+    // counter-clockwise, so the same number of degrees cancels it.
     expect(uprightRotation(A4(0))).toBe(0);
-    expect(uprightRotation(A4(90))).toBe(270);
+    expect(uprightRotation(A4(90))).toBe(90);
     expect(uprightRotation(A4(180))).toBe(180);
-    expect(uprightRotation(A4(270))).toBe(90);
+    expect(uprightRotation(A4(270))).toBe(270);
+  });
+
+  it('is not the complement, which is the tempting wrong answer', () => {
+    // 360 - rotation places the signature correctly and lays it on its side,
+    // which no self-consistent test can see.
+    expect(uprightRotation(A4(90))).not.toBe(270);
   });
 });
 

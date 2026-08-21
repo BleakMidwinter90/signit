@@ -12,7 +12,8 @@
     "lint": "oxlint",
     "smoke": "npm run build && node scripts/smoke.mjs",
     "serve": "node scripts/serve.mjs",
-    "verify:rotation": "vite-node scripts/verify-rotation.ts"
+    "verify:rotation": "vite-node scripts/verify-rotation.ts",
+    "verify:stamp": "vite-node scripts/verify-stamp.ts"
   },
   "dependencies": {
     "pdf-lib": "^1.17.1",
