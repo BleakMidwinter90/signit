@@ -11,7 +11,8 @@
     "typecheck": "tsc -b --noEmit",
     "lint": "oxlint",
     "smoke": "npm run build && node scripts/smoke.mjs",
-    "serve": "node scripts/serve.mjs"
+    "serve": "node scripts/serve.mjs",
+    "verify:rotation": "vite-node scripts/verify-rotation.ts"
   },
   "dependencies": {
     "pdf-lib": "^1.17.1",
@@ -27,9 +28,11 @@
     "@vitejs/plugin-react": "^6.0.4",
     "oxlint": "^1.79.0",
     "playwright": "^1.62.1",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "vite": "^8.2.0",
+    "vite-node": "^6.0.0",
     "vitest": "^4.1.11"
   }
 }
